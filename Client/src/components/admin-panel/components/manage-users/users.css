@@ -1,0 +1,9 @@
+.users_wrapper {
+    width: 80%;
+    margin: auto;
+}
+.users_wrapper>button {
+    background: #4B4B4B;
+    box-shadow: 0px 4px 4px #2D2D2D;
+    margin-bottom: 10px;
+}

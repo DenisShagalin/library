@@ -1,0 +1,12 @@
+.list_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.list_row_item {
+    text-align: center;
+    border: 1px solid grey;
+}
+.text_field-cell>div {
+    color: white;
+}

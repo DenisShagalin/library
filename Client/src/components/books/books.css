@@ -1,0 +1,24 @@
+.main-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background: #333333;
+    backdrop-filter: blur(4px);
+    position: relative;
+    font-family: Bodoni 72;
+    line-height: 26px;
+    color: #E5E5E5;
+
+    font-family: 'Bodoni';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Bodoni'), url(http://themes.googleusercontent.com/licensed/font?kit=nrx5uJU7zQHuDSE3rnyfCg) format('truetype');
+}
+.books {
+    margin: auto;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}

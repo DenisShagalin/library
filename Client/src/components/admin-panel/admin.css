@@ -1,0 +1,18 @@
+.links_wrapper {
+    border-top: 1px solid #2D2D2D;
+    display: flex;
+    justify-content: center;
+}
+.links_wrapper button {
+    background: #4B4B4B;
+    box-shadow: 0px 4px 4px #2D2D2D;
+    border: none;
+    width: 80px;
+    height: 40px;
+    font-size: 14px;
+    margin: 10px;
+}
+.links_wrapper > a {
+    text-decoration: none;
+    color: white;
+}

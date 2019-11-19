@@ -1,0 +1,8 @@
+.register_page_fields {
+    width: 60%;
+    height: 55%;
+    margin: 40px auto;
+}
+.register_page_fields label {
+    font-size: 12px;
+}
