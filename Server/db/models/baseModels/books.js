@@ -16,9 +16,6 @@ module.exports = (queryInterface, Sequelize) => {
     price: {
       type: Sequelize.INTEGER
     },
-    userId: {
-      type: Sequelize.INTEGER,
-    },
     counter: {
       type: Sequelize.INTEGER,
     },

@@ -1,6 +1,6 @@
 
 module.exports = (queryInterface, Sequelize) => {
-  const profits = queryInterface.define('profits', {
+  const payments = queryInterface.define('payments', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -22,5 +22,5 @@ module.exports = (queryInterface, Sequelize) => {
   }, {
     timestamps: false,
   });
-  return profits;
+  return payments;
 };
