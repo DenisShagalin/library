@@ -26,6 +26,13 @@ export class AddBook extends Component {
             type='number'
             onChange={onChange}
           />
+          <TextField
+            label='Amount'
+            className='add_book_field'
+            name='amount'
+            type='number'
+            onChange={onChange}
+          />
         </div>
         <div className='add_book-big_field'>
           <TextField

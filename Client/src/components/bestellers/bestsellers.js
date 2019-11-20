@@ -5,8 +5,8 @@ import { loadTopBooks } from '../books/actions/booksActions';
 
 class Bestseleers extends Component {
   componentDidMount() {
-    const { loadTopBooks } = this.props;
-    loadTopBooks();
+    // const { loadTopBooks } = this.props;
+    // loadTopBooks();
   }
 
   render() {

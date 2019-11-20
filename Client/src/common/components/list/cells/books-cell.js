@@ -5,9 +5,14 @@ export class BooksCell extends Component {
   render() {
     const { item, column } = this.props;
     const books = item[column.id];
+    const renderedValue = books.length && books.reduce((acc, item) => {
+      acc.push(item.book.name);
+      return acc;
+    }, []);
+
     return (
       <div className={`list_row_item ${column.className}`}>
-        {books.map(book =><span key={book.id}>{book.name}</span>)}
+        {renderedValue.length && renderedValue.join(', ')}
       </div>
     );
   }

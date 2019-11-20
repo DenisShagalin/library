@@ -6,7 +6,6 @@ const hasPermission = require('../../hasPermission');
 const users = require('../../db/models/users');
 
 db.users.belongsTo(db.roles, { foreignKey: 'roleId' });
-db.users.hasMany(db.books)
 
 router.get('/', function (req, res) {
   if (hasPermission(req.headers.authorization)) {

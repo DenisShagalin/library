@@ -3,13 +3,13 @@ const router = express.Router();
 const db = require('../db/models/index');
 const hasPermission = require('../hasPermission');
 
-db.profits.belongsTo(db.books, { foreignKey: 'bookId' });
-db.profits.belongsTo(db.users, { foreignKey: 'userId' });
+db.payments.belongsTo(db.books, { foreignKey: 'bookId' });
+db.payments.belongsTo(db.users, { foreignKey: 'userId' });
 
 router.get('/users', (req, res) => {
   if (hasPermission(req.headers.authorization)) {
     // const { userId } = req.params;
-    db.profits.findAll({
+    db.payments.findAll({
       attributes: ['id', 'payment', 'date'],
       order: [
         ['date', 'DESC'],

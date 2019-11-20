@@ -16,7 +16,7 @@ export class Users extends Component {
           name: 'Name', id: 'name', className: 'small-col',
         },
         {
-          name: 'Books', id: 'books',  className: 'big-col',
+          name: 'Books', id: 'booksToUsers',  className: 'big-col',
         },
         {
           name: 'Role', id: 'role',  className: 'medium-col',
@@ -43,7 +43,7 @@ export class Users extends Component {
           columns={columns}
           data={users}
           config={{
-            'books': { cell: BooksCell },
+            'booksToUsers': { cell: BooksCell },
             'role': {
               cell: RoleCell,
               onChange: this.handleChange,

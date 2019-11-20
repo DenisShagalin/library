@@ -15,11 +15,8 @@ export const setBooks = (books) => ({
 export const updateBook = (book) => ({
   type: UPDATE_BOOK_ADMIN,
   payload: {
-    id: book.id,
-    name: book.name,
-    description: book.description,
-    price: book.price,
-  }
+    ...book,
+  },
 });
 
 export const createNewBook = (book) => ({
