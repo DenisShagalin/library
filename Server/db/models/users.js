@@ -1,7 +1,8 @@
 const db = require('./index');
 
 db.users.belongsTo(db.roles, { foreignKey: 'roleId' });
-db.users.hasMany(db.books)
+db.users.hasMany(db.booksToUsers, { foreignKey: 'userId' });
+db.booksToUsers.belongsTo(db.books, { foreignKey: 'bookId' });
 
 class Users {
   getAllUsers() {
@@ -10,12 +11,18 @@ class Users {
       order: ['name'],
       include: [
         {
-          model: db.books,
-          attributes: ['id', 'name'],
-        },
-        {
           model: db.roles,
           order: ['name'],
+        },
+        {
+          model: db.booksToUsers,
+          attributes: ['id'],
+          include:[
+            {
+              model: db.books,
+              attributes: ['name'],
+            },
+          ],
         },
       ]
     });

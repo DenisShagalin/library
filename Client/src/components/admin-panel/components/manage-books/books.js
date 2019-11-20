@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadBooks, updateBook, createNewBook } from '../../actions/booksActions';
 import { List } from '../../../../common/components/list/list';
-import { BoolCell } from '../../../../common/components/list/cells/bool-cell';
 import { TextFieldCell } from '../../../../common/components/list/cells/text_field-cell';
 import { AddBook } from './add-book';
 
@@ -23,13 +22,14 @@ export class Books extends Component {
           name: 'Price', id: 'price',  className: 'medium-col',
         },
         {
-          name: 'Occupied', id: 'occupied',  className: 'medium-col',
+          name: 'Amount', id: 'amount',  className: 'medium-col',
         },
       ],
       newBook: {
         name: '',
         price: null,
         description: '',
+        amount: null,
       }
     };
   }
@@ -84,7 +84,7 @@ export class Books extends Component {
             onCancel={this.toogleAddBookComponent}
             onChange={this.onHandleChangeNewBook}
             onSave={this.handleSaveNewBook}
-            isDisabled={!newBook.name || !newBook.price}
+            isDisabled={!newBook.name || !newBook.price || !newBook.amount}
           />
         )}
         <button onClick={this.toogleAddBookComponent}>Add new book</button>
@@ -92,7 +92,11 @@ export class Books extends Component {
           columns={columns}
           data={books}
           config={{
-            'occupied': { cell: BoolCell },
+            'amount': {
+              cell: TextFieldCell,
+              onChange: this.handleChangeBook,
+              type: 'number',
+            },
             'price': {
               cell: TextFieldCell,
               onChange: this.handleChangeBook,

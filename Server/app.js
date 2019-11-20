@@ -15,6 +15,7 @@ const books = require('./routes/books');
 const adminUsers = require('./routes/admin/users');
 const adminBooks = require('./routes/admin/books');
 const buyBook = require('./routes/buyBook');
+
 const profit = require('./routes/profit');
 
 const app = express();
@@ -45,7 +46,7 @@ app.use('/admin/users', passport.authenticate('jwt', { session: false }), adminU
 app.use('/admin/books', passport.authenticate('jwt', { session: false }), adminBooks);
 app.use('/book/buy', passport.authenticate('jwt', { session: false }), buyBook);
 app.use('/books/my-books', passport.authenticate('jwt', { session: false }), books);
-app.use('/profit/', profit);
+// app.use('/profit/', profit);
 // app.use('/profit/', passport.authenticate('jwt', { session: false }), profit);
 
 // // catch 404 and forward to error handler
@@ -53,7 +54,7 @@ app.use('/profit/', profit);
 //   next(createError(404));
 // });
 
-// // error handler
+// // // error handler
 // app.use(function (err, req, res) {
 //   // set locals, only providing error in development
 //   res.locals.message = err.message;

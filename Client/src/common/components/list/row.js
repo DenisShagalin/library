@@ -21,6 +21,7 @@ export class Row extends Component {
           ) : (
               <div
                 className={`list_row_item ${column.className}`}
+                key={i}
               >
                 <span>
                   {item[column.id]}

@@ -5,8 +5,8 @@ const db = require('../db/models/index');
 const books = require('../db/models/books');
 
 db.books.belongsTo(db.users, { foreignKey: 'userId' });
-db.profits.belongsTo(db.users, { foreignKey: 'userId' });
-db.profits.belongsTo(db.books, { foreignKey: 'bookId' });
+db.payments.belongsTo(db.users, { foreignKey: 'userId' });
+db.payments.belongsTo(db.books, { foreignKey: 'bookId' });
 
 router.post('/', (req, res) => {
   const bookId = req.body.book.id;

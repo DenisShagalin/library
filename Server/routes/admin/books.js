@@ -27,10 +27,12 @@ router.put('/', function (req, res) {
     const name = req.body.name;
     const description = req.body.description;
     const price = req.body.price;
+    const amount = req.body.amount;
     db.books.update({
       name: name,
       description: description,
       price: price,
+      amount: amount,
     }, {
       where: {
         id: id,
@@ -56,11 +58,12 @@ router.post('/', function (req, res) {
     const name = req.body.name;
     const description = req.body.description || '';
     const price = req.body.price;
+    const amount = req.body.amount;
     db.books.create({
       name: name,
       description: description,
       price: price,
-      counter: 0,
+      amount: amount,
     })
       .then(() => {
         books.getAllBooks()
