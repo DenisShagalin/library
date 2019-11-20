@@ -18,14 +18,6 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER,
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        references: {
-          model: 'users',
-          key: 'id'
-        }
-      },
       counter: {
         type: Sequelize.INTEGER,
       },

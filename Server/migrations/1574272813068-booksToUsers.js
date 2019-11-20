@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('profits', {
+    return queryInterface.createTable('booksToUsers', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -25,15 +25,12 @@ module.exports = {
           key: 'id'
         }
       },
-      payment: {
-        type: Sequelize.INTEGER,
-      },
       date: {
         type: Sequelize.DATE,
       },
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('profits');
+    return queryInterface.dropTable('booksToUsers');
   }
 };
