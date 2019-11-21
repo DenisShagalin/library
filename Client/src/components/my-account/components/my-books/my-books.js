@@ -22,7 +22,7 @@ class MyBooks extends Component {
         {myBooks.map((item, i) => {
           return (
             <Book
-              item={item}
+              item={item.book}
               onClick={this.handleReturnBook}
               key={i}
               isMarked

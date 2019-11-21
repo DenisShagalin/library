@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-// const db = require('../db/models/index');
 
 const books = require('../db/models/books');
 
 router.get('/', (req, res) => {
-  books.getNotOccupiedBooks()
+  books.getAllBooks()
     .then((result) => {
       res.send(result);
     })
@@ -16,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.get('/my-books/:userId', (req, res) => {
   const { userId } = req.params;
-  books.getBooksById(userId)
+  books.getBooksByUserId(userId)
     .then((result) => {
       res.send(result);
     })

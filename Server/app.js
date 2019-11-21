@@ -41,11 +41,11 @@ app.use('/public', express.static(__dirname + "/public"));
 
 app.use('/login', login);
 app.use('/register', register);
-app.use('/books', passport.authenticate('jwt', { session: false }), books);
+app.use('/books/', passport.authenticate('jwt', { session: false }), books);
 app.use('/admin/users', passport.authenticate('jwt', { session: false }), adminUsers);
 app.use('/admin/books', passport.authenticate('jwt', { session: false }), adminBooks);
-app.use('/book/buy', passport.authenticate('jwt', { session: false }), buyBook);
-app.use('/books/my-books', passport.authenticate('jwt', { session: false }), books);
+app.use('/book/', passport.authenticate('jwt', { session: false }), buyBook);
+
 // app.use('/profit/', profit);
 // app.use('/profit/', passport.authenticate('jwt', { session: false }), profit);
 

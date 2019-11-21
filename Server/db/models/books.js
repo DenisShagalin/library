@@ -1,34 +1,33 @@
 const db = require('./index');
 
+db.booksToUsers.belongsTo(db.books, { foreignKey: 'id' });
+
 class Books {
   getAllBooks() {
     return db.books.findAll({
-      attributes: ['id', 'name', 'description', 'price', 'amount'],
+      attributes: ['id', 'name', 'description', 'price', 'amount', 'counter'],
       order: ['name'],
     });
   };
 
-  getNotOccupiedBooks() {
-    return db.books.findAll({
-      attributes: ['id', 'name', 'description', 'price', 'amount'],
+  getBooksByUserId(userId) {
+    return db.booksToUsers.findAll({
+      attributes: ['id'],
       where: {
-        amount: {
-          [db.Op.gt]: 0, 
-        }
+        userId: userId,
       },
+      include: [
+        {
+          model: db.books,
+          attributes: ['id', 'name', 'description', 'price', 'amount', 'counter'],
+        },
+      ],
     });
   };
 
-  // getBooksById(userId) {
-  //   return db.books.findAll({
-  //     where: {
-  //       userId: userId,
-  //     },
-  //   });
-  // };
-
   getTopBooks(limit) {
     return db.books.findAll({
+      attributes: ['id', 'name', 'description', 'price'],
       order: [
         ['counter', 'DESC'],
       ],

@@ -39,6 +39,7 @@ export class Books extends Component {
               onClick={this.handleBuy}
               key={i}
               isMarked={choosenBooks.includes(item.id)}
+              showAmount
             />
           );
         })}
