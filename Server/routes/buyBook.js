@@ -4,31 +4,33 @@ const db = require('../db/models/index');
 
 const books = require('../db/models/books');
 
-db.books.belongsTo(db.users, { foreignKey: 'userId' });
-db.payments.belongsTo(db.users, { foreignKey: 'userId' });
-db.payments.belongsTo(db.books, { foreignKey: 'bookId' });
+// db.books.belongsTo(db.users, { foreignKey: 'userId' });
+// db.payments.belongsTo(db.users, { foreignKey: 'userId' });
+// db.payments.belongsTo(db.books, { foreignKey: 'bookId' });
 
-router.post('/', (req, res) => {
+db.booksToUsers.belongsTo(db.books, { foreignKey: 'id' });
+
+router.post('/buy', (req, res) => {
   const bookId = req.body.book.id;
   const counter = req.body.book.counter;
+  const amount = req.body.book.amount;
   const userId = req.body.userId;
-  const payment = req.body.book.price;
-  db.profits.create({
+  // const payment = req.body.book.price;
+  db.booksToUsers.create({
     bookId: bookId,
     userId: userId,
-    payment: payment,
   })
     .then(() => {
       db.books.update({
-        userId: userId,
         counter: counter + 1,
+        amount: amount - 1,
       }, {
         where: {
           id: bookId,
         },
       })
         .then(() => {
-          books.getNotOccupiedBooks()
+          books.getAllBooks()
             .then((result) => {
               res.send(result);
             })
