@@ -1,6 +1,6 @@
 const db = require('./index');
 
-db.booksToUsers.belongsTo(db.books, { foreignKey: 'id' });
+db.booksToUsers.belongsTo(db.books);
 
 class Books {
   getAllBooks() {
@@ -31,7 +31,7 @@ class Books {
       order: [
         ['counter', 'DESC'],
       ],
-      limit: limit
+      limit: limit,
     });
   }
 }

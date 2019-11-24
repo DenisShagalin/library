@@ -4,21 +4,16 @@ const db = require('../db/models/index');
 
 const books = require('../db/models/books');
 
-// db.books.belongsTo(db.users, { foreignKey: 'userId' });
-// db.payments.belongsTo(db.users, { foreignKey: 'userId' });
-// db.payments.belongsTo(db.books, { foreignKey: 'bookId' });
-
-db.booksToUsers.belongsTo(db.books, { foreignKey: 'id' });
-
 router.post('/buy', (req, res) => {
   const bookId = req.body.book.id;
   const counter = req.body.book.counter;
   const amount = req.body.book.amount;
   const userId = req.body.userId;
-  // const payment = req.body.book.price;
+
   db.booksToUsers.create({
     bookId: bookId,
     userId: userId,
+    date: new Date(),
   })
     .then(() => {
       db.books.update({
@@ -35,7 +30,7 @@ router.post('/buy', (req, res) => {
               res.send(result);
             })
             .catch(() => {
-              res.status(404).send({ message : 'Something went wrong' });
+              res.status(404).send({ message: 'Something went wrong' });
             });
         })
         .catch(() => {
@@ -47,23 +42,41 @@ router.post('/buy', (req, res) => {
     });
 });
 
-router.put('/', (req, res) => {
+router.put('/return/:id', (req, res) => {
+  const { id } = req.params;
   const bookId = req.body.bookId;
   const userId = req.body.userId;
-  db.books.update({
-    userId: null,
-  }, {
+  const amount = req.body.amount;
+  const payment = req.body.price;
+  db.booksToUsers.destroy({
     where: {
-      id: bookId,
+      id: id,
     },
   })
     .then(() => {
-      books.getBooksById(userId)
-        .then((result) => {
-          res.send(result);
+      db.books.update({
+        amount: amount + 1,
+      }, {
+        where: {
+          id: bookId,
+        },
+      })
+        .then(() => {
+          db.payments.create({
+            userId: userId,
+            bookId: bookId,
+            payment: payment,
+            date: new Date(),
+          })
+            .then(() => {
+              res.sendStatus(200)
+            })
+            .catch(() => {
+              res.status(404).send({ message: 'Something went wrong' });
+            });
         })
         .catch(() => {
-          res.status(404).send({ message : 'Something went wrong' });
+          res.status(404).send({ message: 'Something went wrong' });
         });
     })
     .catch(() => {

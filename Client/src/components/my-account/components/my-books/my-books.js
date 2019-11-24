@@ -11,15 +11,24 @@ class MyBooks extends Component {
   }
 
   handleReturnBook = ({ target }) => {
-    const { returnBook, userId } = this.props;
-    returnBook(+target.value, userId);
+    const { returnBook, userId, myBooks } = this.props;
+    const currentBook = myBooks.find(item => item.book.id === +target.value);
+    if (currentBook) {
+      const book = {
+        bookId: currentBook.book.id,
+        amount: currentBook.book.amount,
+        price: currentBook.book.price,
+        userId,
+      };
+      returnBook(currentBook.id, book);
+    }
   }
 
   render() {
     const { myBooks } = this.props;
     return (
       <div className='account_wrapper'>
-        {myBooks.map((item, i) => {
+        {myBooks && myBooks.map((item, i) => {
           return (
             <Book
               item={item.book}

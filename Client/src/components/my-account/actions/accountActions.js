@@ -10,9 +10,7 @@ export const setBooksInAccount = (books) => ({
 
 export const loadMyBooks = (userId) => ({
   type: LOAD_MY_BOOKS,
-  payload: {
-    userId,
-  },
+  payload: userId,
 });
 
 export const setMyBooks = (books) => ({
@@ -20,10 +18,10 @@ export const setMyBooks = (books) => ({
   payload: books,
 });
 
-export const returnBook = (bookId, userId) => ({
+export const returnBook = (id, book) => ({
   type: RETURN_BOOK,
   payload: {
-    bookId,
-    userId,
+    id,
+    book,
   },
 });

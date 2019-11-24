@@ -9,7 +9,7 @@ import {
 export function* loadMyBooks(action) {
   try {
     const books = yield call(http, {
-      url: `books/my-books/${action.payload.userId}`,
+      url: `books/my-books/${action.payload}`,
       method: 'get',
     });
     yield put(setMyBooks(books.data));
@@ -20,12 +20,12 @@ export function* loadMyBooks(action) {
 
 export function* returnBook(action) {
   try {
-    const books = yield call(http, {
-      url: 'book/buy',
+    yield call(http, {
+      url: `book/return/${action.payload.id}`,
       method: 'put',
-      data: action.payload,
+      data: action.payload.book,
     });
-    yield put(setMyBooks(books.data));
+    yield call(loadMyBooks, { payload: action.payload.book.userId });
   } catch (error) {
     // 
   }
