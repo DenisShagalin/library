@@ -20,7 +20,7 @@ Server:
 Client:
 1) edit the file config.json.sample (remove .sample) from the file name.
 
-2) npm install jest -g 
+2) npm install -g node-gyp 
 
 3) "npm test -- --coverage"  <-- this command will be run test coverage.
 
