@@ -1,8 +1,7 @@
-import { SET_BOOKS, SET_TOP_BOOKS } from '../actions/booksActions';
+import { SET_BOOKS } from '../actions/booksActions';
 
 const initialState = {
   books: [],
-  topBooks: {},
 };
 
 export default function booksReducer(state = initialState, action) {
@@ -12,11 +11,6 @@ export default function booksReducer(state = initialState, action) {
         ...state,
         books: action.payload,
       };
-    case SET_TOP_BOOKS:
-      return {
-        ...state,
-        topBooks: action.payload,
-      }
     default:
       return state;
   }

@@ -6,8 +6,7 @@ import {
 } from 'react-router-dom';
 import history from '../utils/history';
 import { Header } from '../common/components/header/header';
-import Books from './books/books';
-import Bestseleers from './bestellers/bestsellers';
+import Books from './books/books.js'
 import Login from './login/login';
 import RegisterPage from './register-page/register-page';
 import { Admin } from './admin-panel/admin';
@@ -25,8 +24,7 @@ export class App extends Component {
             <div className='main-wrapper'>
               <Header signOut={signOut} isAdmin={isAdmin} />
               <Switch>
-                <Route exact path='/books' component={Books} />
-                <Route path='/bestsellers' component={Bestseleers} />
+                <Route path='/books' component={Books} />
                 <Route path='/my-account' component={MyAccount} />
                 { isAdmin && <Route path='/admin' component={Admin} />}
                 <Redirect to='/books' />

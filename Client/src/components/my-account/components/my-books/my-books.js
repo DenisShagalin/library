@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadMyBooks, returnBook } from '../../actions/accountActions';
-import { Book } from '../../../../common/components/book/books';
+import { Book } from '../../../../common/components/book/book';
 
 class MyBooks extends Component {
   componentDidMount() {
@@ -28,7 +28,7 @@ class MyBooks extends Component {
     const { myBooks } = this.props;
     return (
       <div className='account_wrapper'>
-        {myBooks && myBooks.map((item, i) => {
+        {myBooks.length ? myBooks.map((item, i) => {
           return (
             <Book
               item={item.book}
@@ -38,7 +38,7 @@ class MyBooks extends Component {
               title='Return'
             />
           );
-        })}
+        }) : 'No Items'}
       </div>
     );
   }

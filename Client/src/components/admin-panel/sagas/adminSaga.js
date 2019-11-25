@@ -11,6 +11,7 @@ import {
   UPDATE_BOOK_ADMIN,
   CREATE_NEW_BOOK,
   setBooks,
+  LOAD_TOP_BOOKS, setTopBooks,
 } from '../actions/booksActions';
 
 export function* getUsers() {
@@ -76,10 +77,23 @@ export function* createBook(action) {
   }
 }
 
+export function* getTopBooks(action) {
+  try {
+    const books = yield call(http, {
+      url: `books/top/${action.payload}`,
+      method: 'get',
+    });
+    yield put(setTopBooks(books.data));
+  } catch (error) {
+    // 
+  }
+}
+
 export default function* AdminRootSaga() {
   yield takeEvery(LOAD_USERS, getUsers);
   yield takeEvery(UPDATE_USER_ROLE, updateUserRole);
   yield takeEvery(LOAD_BOOKS_ADMIN, loadBooks);
   yield takeEvery(UPDATE_BOOK_ADMIN, updateBook);
   yield takeEvery(CREATE_NEW_BOOK, createBook);
+  yield takeEvery(LOAD_TOP_BOOKS, getTopBooks);
 }

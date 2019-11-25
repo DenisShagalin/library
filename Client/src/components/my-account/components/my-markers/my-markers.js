@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setBooksInAccount } from '../../actions/accountActions';
-import { Book } from '../../../../common/components/book/books';
+import { Book } from '../../../../common/components/book/book';
 import { getMarkedBooks } from '../../../../utils/getMarkedBooks';
 import { buyBook } from '../../../books/actions/booksActions';
 
@@ -28,7 +28,7 @@ class MyMarkers extends Component {
     const { books, choosenBooks } = this.props;
     return (
       <div className='account_wrapper'>
-        {books.map((item, i) => {
+        {choosenBooks.length ? books.map((item, i) => {
           if (choosenBooks.includes(item.id)) {
             return (
               <Book
@@ -41,7 +41,7 @@ class MyMarkers extends Component {
             );
           }
           return null;
-        })}
+        }) : 'No Items'}
       </div>
     );
   }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadBooks, updateBook, createNewBook } from '../../actions/booksActions';
+import { loadBooks, updateBook, createNewBook, loadTopBooks } from '../../actions/booksActions';
 import { List } from '../../../../common/components/list/list';
 import { TextFieldCell } from '../../../../common/components/list/cells/text_field-cell';
 import { AddBook } from './add-book';
+import { Diagram } from './diagram';
 
 export class Books extends Component {
   constructor(props) {
@@ -30,13 +31,15 @@ export class Books extends Component {
         price: null,
         description: '',
         amount: null,
-      }
+      },
+      showPieChart: false,
     };
   }
 
   componentDidMount() {
-    const { loadBooks } = this.props;
+    const { loadBooks, loadTopBooks } = this.props;
     loadBooks();
+    loadTopBooks();
   }
 
   handleChangeBook = (value, book, cell) => {
@@ -52,6 +55,13 @@ export class Books extends Component {
     const { showAddBookComponent } = this.state;
     this.setState({
       showAddBookComponent: !showAddBookComponent,
+    });
+  }
+
+  toogleDiagram = () => {
+    const { showPieChart } = this.state;
+    this.setState({
+      showPieChart: !showPieChart,
     });
   }
   
@@ -75,8 +85,8 @@ export class Books extends Component {
   }
 
   render() {
-    const { columns, showAddBookComponent, newBook } = this.state;
-    const { books } = this.props;
+    const { columns, showAddBookComponent, newBook, showPieChart } = this.state;
+    const { books, diagramData } = this.props;
     return (
       <div className='users_wrapper'>
         {showAddBookComponent && (
@@ -87,7 +97,13 @@ export class Books extends Component {
             isDisabled={!newBook.name || !newBook.price || !newBook.amount}
           />
         )}
+        {showPieChart && (
+          <Diagram
+            data={diagramData}
+          />
+        )}
         <button onClick={this.toogleAddBookComponent}>Add new book</button>
+        <button onClick={this.toogleDiagram}>{showPieChart ? 'Hide Diagram' : 'Show Diagram'}</button>
         <List
           columns={columns}
           data={books}
@@ -127,12 +143,14 @@ Books.propTypes = {
 
 const mapStateToProps = (state) => ({
   books: state.adminReducer.books,
+  diagramData: state.adminReducer.diagramData,
 });
 
 const mapDispatchToProps = {
   loadBooks,
   updateBook,
   createNewBook,
+  loadTopBooks,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Books);

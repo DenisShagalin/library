@@ -1,9 +1,10 @@
 import { SET_USERS } from '../actions/usersActions';
-import { SET_BOOKS_ADMIN } from '../actions/booksActions';
+import { SET_BOOKS_ADMIN, SET_TOP_BOOKS } from '../actions/booksActions';
 
 const initialState = {
   users: [],
   books: [],
+  diagramData: [],
 };
 
 export default function adminReducer(state = initialState, action) {
@@ -17,6 +18,11 @@ export default function adminReducer(state = initialState, action) {
       return {
         ...state,
         books: action.payload,
+      };
+    case SET_TOP_BOOKS:
+      return {
+        ...state,
+        diagramData: action.payload,
       };
     default:
       return state;

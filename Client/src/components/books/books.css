@@ -22,3 +22,11 @@
     justify-content: flex-start;
     flex-wrap: wrap;
 }
+
+.books_filters {
+    margin: auto;
+    width: 200px;
+    border: 1px solid red;
+    height: 30px;
+    display: flex;
+}

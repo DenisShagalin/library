@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadBooks, buyBook } from './actions/booksActions';
 import { signOut } from '../login/actions/loginActions';
-import { Book } from '../../common/components/book/books';
+import { Book } from '../../common/components/book/book';
 import { setBooksInAccount } from '../my-account/actions/accountActions';
 import { getMarkedBooks } from '../../utils/getMarkedBooks';
 import './books.css'
@@ -46,7 +46,7 @@ export class Books extends Component {
       </div>
     );
   }
-} 
+}
 
 Books.propTypes = {
   loadBooks: PropTypes.func.isRequired,

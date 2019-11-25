@@ -6,7 +6,9 @@ class Books {
   getAllBooks() {
     return db.books.findAll({
       attributes: ['id', 'name', 'description', 'price', 'amount', 'counter'],
-      order: ['name'],
+      order: [
+        ['name', 'ASC'],
+      ],
     });
   };
 
@@ -27,7 +29,7 @@ class Books {
 
   getTopBooks(limit) {
     return db.books.findAll({
-      attributes: ['id', 'name', 'description', 'price'],
+      attributes: ['id', 'name', 'counter'],
       order: [
         ['counter', 'DESC'],
       ],

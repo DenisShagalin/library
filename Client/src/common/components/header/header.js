@@ -21,7 +21,6 @@ export class Header extends Component {
         </div>
         <div className='header_main-buttons'>
           <Link to='/books'><button>Books</button></Link>
-          <Link to='/bestsellers'><button>Bestsellers</button></Link>
         </div>
       </div>
     );
