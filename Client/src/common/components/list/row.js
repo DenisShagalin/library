@@ -24,7 +24,7 @@ export class Row extends Component {
                 key={i}
               >
                 <span>
-                  {item[column.id]}
+                  {item[column.id].name || item[column.id]}
                 </span>
               </div>
             )

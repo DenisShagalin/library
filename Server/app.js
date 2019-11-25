@@ -14,9 +14,8 @@ const register = require('./routes/register');
 const books = require('./routes/books');
 const adminUsers = require('./routes/admin/users');
 const adminBooks = require('./routes/admin/books');
+const adminPayments = require('./routes/admin/payments');
 const buyBook = require('./routes/buyBook');
-
-const profit = require('./routes/profit');
 
 const app = express();
 
@@ -44,10 +43,8 @@ app.use('/register', register);
 app.use('/books/', passport.authenticate('jwt', { session: false }), books);
 app.use('/admin/users', passport.authenticate('jwt', { session: false }), adminUsers);
 app.use('/admin/books', passport.authenticate('jwt', { session: false }), adminBooks);
+app.use('/admin/payments', passport.authenticate('jwt', { session: false }), adminPayments);
 app.use('/book/', passport.authenticate('jwt', { session: false }), buyBook);
-
-// app.use('/profit/', profit);
-// app.use('/profit/', passport.authenticate('jwt', { session: false }), profit);
 
 // // catch 404 and forward to error handler
 // app.use(function (req, res, next) {

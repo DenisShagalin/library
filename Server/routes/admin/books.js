@@ -21,6 +21,21 @@ router.get('/', function (req, res) {
   }
 });
 
+router.get('/top/:limit', (req, res) => {
+  if (hasPermission(req.headers.authorization)) {
+    const { limit } = req.params;
+    books.getTopBooks(+limit)
+      .then((result) => {
+        res.send(result);
+      })
+      .catch(() => {
+        res.status(404).send({ message : 'Something went wrong' });
+      });
+  } else {
+    res.sendStatus(403);
+  }
+});
+
 router.put('/', function (req, res) {
   if (hasPermission(req.headers.authorization)) {
     const id = req.body.id;

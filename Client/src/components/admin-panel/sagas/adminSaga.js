@@ -13,6 +13,7 @@ import {
   setBooks,
   LOAD_TOP_BOOKS, setTopBooks,
 } from '../actions/booksActions';
+import { LOAD_PAYMENTS, setPayments } from '../actions/paymentsActions';
 
 export function* getUsers() {
   try {
@@ -80,10 +81,22 @@ export function* createBook(action) {
 export function* getTopBooks(action) {
   try {
     const books = yield call(http, {
-      url: `books/top/${action.payload}`,
+      url: `admin/books/top/${action.payload}`,
       method: 'get',
     });
     yield put(setTopBooks(books.data));
+  } catch (error) {
+    // 
+  }
+}
+
+export function* loadPayments() {
+  try {
+    const payments = yield call(http, {
+      url: 'admin/payments',
+      method: 'get',
+    });
+    yield put(setPayments(payments.data));
   } catch (error) {
     // 
   }
@@ -96,4 +109,5 @@ export default function* AdminRootSaga() {
   yield takeEvery(UPDATE_BOOK_ADMIN, updateBook);
   yield takeEvery(CREATE_NEW_BOOK, createBook);
   yield takeEvery(LOAD_TOP_BOOKS, getTopBooks);
+  yield takeEvery(LOAD_PAYMENTS, loadPayments);
 }

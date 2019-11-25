@@ -24,15 +24,4 @@ router.get('/my-books/:userId', (req, res) => {
     });
 });
 
-router.get('/top/:limit', (req, res) => {
-  const { limit } = req.params;
-  books.getTopBooks(+limit)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch(() => {
-      res.status(404).send({ message : 'Something went wrong' });
-    });
-});
-
 module.exports = router;
