@@ -6,10 +6,16 @@ const hasPermission = require('../../hasPermission');
 db.payments.belongsTo(db.books);
 db.payments.belongsTo(db.users);
 
-router.get('/', function (req, res) {
+router.get('/:userId', function (req, res) {
   if (hasPermission(req.headers.authorization)) {
+    const { userId } = req.params;
+    console.log(userId);
+    console.log(req.params);
     db.payments.findAll({
       attributes: ['id', 'payment', 'date'],
+      // where: {
+      //   userId: userId,
+      // },
       include: [
         {
           model: db.books,

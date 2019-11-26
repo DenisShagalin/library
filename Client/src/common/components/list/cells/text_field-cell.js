@@ -10,6 +10,7 @@ export class TextFieldCell extends Component {
       value: item[column.id],
     };
   }
+
   onChange = ({ target }) => {
     this.setState({
       value: target.value,

@@ -78,7 +78,7 @@ export class Books extends Component {
   handleSaveNewBook = () => {
     const { newBook } = this.state;
     const { createNewBook } = this.props;
-    if (newBook.name && newBook.price) {
+    if (newBook.name && newBook.price && newBook.amount) {
       createNewBook(newBook);
       this.toogleAddBookComponent();
     }

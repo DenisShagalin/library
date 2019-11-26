@@ -90,10 +90,10 @@ export function* getTopBooks(action) {
   }
 }
 
-export function* loadPayments() {
+export function* loadPayments(action) {
   try {
     const payments = yield call(http, {
-      url: 'admin/payments',
+      url: `admin/payments/${action.payload}`,
       method: 'get',
     });
     yield put(setPayments(payments.data));

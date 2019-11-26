@@ -17,6 +17,7 @@ class Select extends React.Component {
       selectOptions,
       disabled,
       onBlur,
+      placeholder = 'Choose Item',
     } = this.props;
 
     return (
@@ -29,7 +30,19 @@ class Select extends React.Component {
           inputProps={inputProps}
           disabled={disabled}
           className={selectClassName}
+          placeholder={placeholder}
         >
+          {
+            !value && (
+              <MenuItem
+                value='none'
+                disabled
+                className={optionsClassName}
+              >
+                {placeholder}
+              </MenuItem>
+            )
+          }
           {
             selectOptions.map((item, i) => (
               <MenuItem
