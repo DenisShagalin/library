@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const md5 = require('md5');
 const db = require('../db/models/index');
 
 router.post('/', (req, res) => {
@@ -11,6 +12,7 @@ router.post('/', (req, res) => {
   } else {
     const name = req.body.Name;
     const password = req.body.Password;
+    const hash = md5(password);
     db.users.findOne({
       where: {
         name: name,
@@ -20,7 +22,7 @@ router.post('/', (req, res) => {
         if (!result) {
           db.users.create({
             name: name,
-            password: password,
+            password: hash,
             roleId: 2,
           })
             .then(() => {
