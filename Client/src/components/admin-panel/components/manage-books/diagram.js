@@ -6,7 +6,7 @@ export class Diagram extends Component {
   renderLabel = (item, a) => {
     const { data } = this.props;
     const index = item.dataIndex;
-    return `${data[index].name} (${data[index].counter})`;
+    return `${data[index].title} (${data[index].value})`;
   }
 
   render() {

@@ -36,8 +36,10 @@ export class Payments extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const { loadPayments } = this.props;
     const { usersId } = this.state;
     if (prevState.usersId !== usersId) {
+    const { usersId } = this.state;
       loadPayments(usersId);
     }
   }
@@ -61,7 +63,7 @@ export class Payments extends Component {
           inputProps={{ id: 'user' }}
           formClassName='role_cell-select'
         />
-        {/* <List
+        <List
           columns={columns}
           data={payments}
           config={{
@@ -69,7 +71,7 @@ export class Payments extends Component {
               cell: DateCell,
             }
           }}
-        /> */}
+        />
       </div>
     );
   }

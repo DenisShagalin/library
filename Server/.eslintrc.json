@@ -7,7 +7,7 @@
         "node/prefer-global/process": ["error", "always"],
         "node/prefer-global/url-search-params": ["error", "always"],
         "node/prefer-global/url": ["error", "always"],
-        "indent": [2, 4, {"SwitchCase": 1}],
+        "indent": [2, 2, {"SwitchCase": 1}],
         "linebreak-style": 0,
         "no-use-before-define": [
             "error",

@@ -93,7 +93,7 @@ export function* getTopBooks(action) {
 export function* loadPayments(action) {
   try {
     const payments = yield call(http, {
-      url: `admin/payments/${action.payload}`,
+      url: `admin/payments/id=${action.payload}`,
       method: 'get',
     });
     yield put(setPayments(payments.data));
