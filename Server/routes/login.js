@@ -7,36 +7,43 @@ const config = require('./config.json');
 db.users.belongsTo(db.roles, { foreignKey: 'roleId' })
 
 router.post('/', (req, res) => {
-  const name = req.body.Name;
-  const password = req.body.Password;
-  db.users.findOne({
-    attributes: ['id','name'],
-    where: {
-      name: name,
-      password: password,
-    },
-    include: [{
-      model: db.roles,
-    }]
-  })
-    .then((result) => {
-      if (!result) {
-        throw new Error();
-      }
-      const token = jwt.sign(
+  req.checkBody('Name').isString();
+  req.checkBody('Password').isString();
+  let errors = req.validationErrors();
+  if (errors) {
+    res.status(404).send({ message: 'Invalid name or password' });
+  } else {
+    const name = req.body.Name;
+    const password = req.body.Password;
+    db.users.findOne({
+      attributes: ['id', 'name'],
+      where: {
+        name: name,
+        password: password,
+      },
+      include: [{
+        model: db.roles,
+      }]
+    })
+      .then((result) => {
+        if (!result) {
+          throw new Error();
+        }
+        const token = jwt.sign(
           { role: result.dataValues.role.name },
           config.secret,
           { expiresIn: config.tokenLife }
         );
-      const permissions = {
-        user: result,
-        token,
-      }
-      res.send(permissions);
-    })
-    .catch(() => {
-      res.status(404).send({ message : 'Invalid name or password' });
-    })
+        const permissions = {
+          user: result,
+          token,
+        }
+        res.send(permissions);
+      })
+      .catch(() => {
+        res.status(404).send({ message: 'Invalid name or password' });
+      });
+  }
 });
 
 module.exports = router;

@@ -10,7 +10,7 @@ class Books {
         ['name', 'ASC'],
       ],
     });
-  };
+  }
 
   getBooksByUserId(userId) {
     return db.booksToUsers.findAll({
@@ -25,7 +25,7 @@ class Books {
         },
       ],
     });
-  };
+  }
 
   getTopBooks(limit) {
     return db.books.findAll({

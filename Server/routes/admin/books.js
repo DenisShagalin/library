@@ -79,6 +79,7 @@ router.post('/', function (req, res) {
       description: description,
       price: price,
       amount: amount,
+      counter: 0,
     })
       .then(() => {
         books.getAllBooks()
