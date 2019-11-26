@@ -6,6 +6,7 @@ import { List } from '../../../../common/components/list/list';
 import { TextFieldCell } from '../../../../common/components/list/cells/text_field-cell';
 import { AddBook } from './add-book';
 import { Diagram } from './diagram';
+import { colors } from '../../../../utils/colors';
 
 export class Books extends Component {
   constructor(props) {
@@ -84,9 +85,25 @@ export class Books extends Component {
     }
   }
 
+  getCorrectDataForRenderChart = (data) => {
+    return data.reduce((acc, item, i) => {
+      if (item.counter > 0) {
+        acc.push({
+          title: item.name,
+          value: item.counter,
+          color: colors[i],
+        });
+      }
+      return acc;
+    }, [])
+  }
+
   render() {
     const { columns, showAddBookComponent, newBook, showPieChart } = this.state;
     const { books, diagramData } = this.props;
+
+    const chartsForRender = this.getCorrectDataForRenderChart(diagramData);
+
     return (
       <div className='users_wrapper'>
         {showAddBookComponent && (
@@ -97,13 +114,13 @@ export class Books extends Component {
             isDisabled={!newBook.name || !newBook.price || !newBook.amount}
           />
         )}
-        {showPieChart && (
-          <Diagram
-            data={diagramData}
-          />
-        )}
         <button onClick={this.toogleAddBookComponent}>Add new book</button>
         <button onClick={this.toogleDiagram}>{showPieChart ? 'Hide Diagram' : 'Show Diagram'}</button>
+        {showPieChart && (chartsForRender.length ? (
+          <Diagram
+            data={chartsForRender}
+          />
+        ) : <div>No data for chart</div>)}
         <List
           columns={columns}
           data={books}

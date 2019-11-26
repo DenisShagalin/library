@@ -6,6 +6,7 @@ Client/.vscode
 Client/node_modules
 Client/package-lock.json
 Client/src/config.json
+
 Server/node_modules
 Server/package-lock.json
 Server/config/config.json
@@ -13,10 +14,6 @@ Server/config/config.json
 /.pnp
 .pnp.js
 /.vscode
-Server/nodemailer/*.ics
-
-# testing
-/coverage
 
 # production
 /build

@@ -61,7 +61,7 @@ export class Payments extends Component {
           inputProps={{ id: 'user' }}
           formClassName='role_cell-select'
         />
-        <List
+        {/* <List
           columns={columns}
           data={payments}
           config={{
@@ -69,7 +69,7 @@ export class Payments extends Component {
               cell: DateCell,
             }
           }}
-        />
+        /> */}
       </div>
     );
   }
