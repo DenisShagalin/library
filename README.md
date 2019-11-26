@@ -23,3 +23,8 @@ Client:
 
 3) run:
     npm start
+
+
+default user:
+    login: 'admin'
+    password: 'admin'
